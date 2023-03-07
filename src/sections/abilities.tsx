@@ -138,13 +138,6 @@ const Trajectory = () => {
   );
 };
 const Section = styled.section`
-  //the glow from mars
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 240, 0, 1) 22%,
-    rgba(255, 100, 0, 1) 21%,
-    rgba(0, 0, 0, 1) 25%,
-  );
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,6 +154,12 @@ const Canvas = styled.div`
   align-items: center;
   width: 120rem;
   height: 35rem;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 100, 0, .1) 25%,
+    #f592081d 26%,
+    rgba(0, 0, 0, 1) 28%
+  );
   ul {
     justify-content: space-between;
     height: 60%;

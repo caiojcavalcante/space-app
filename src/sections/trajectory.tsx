@@ -9,11 +9,7 @@ const Trajectory = () => {
           <Image
             src="/card-astronaut-paint.jpg"
             alt="astronaut-paint"
-            height={540}
-            width={540}
-            style={{
-              objectFit: "cover",
-            }}
+            fill
           />
         </ImageWrapper>
         <h2>Space</h2>

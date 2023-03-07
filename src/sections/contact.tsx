@@ -6,12 +6,7 @@ const Contact = () => {
     <Section>
       <div className="Wrapper">
         <div className="imageWrapper">
-          <Image
-            width={320}
-            height={320}
-            src="/contact.jpg"
-            alt="Contact"
-          />
+          <Image fill src="/contact.jpg" alt="Contact" />
         </div>
         <div className="contactWrapper">
           <h1>Contact me</h1>

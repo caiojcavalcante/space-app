@@ -10,7 +10,7 @@ const Mars = () => {
         <CameraControls />
         <directionalLight
           intensity={1}
-          position={[200, 0, -500]}
+          position={[20, 0, 10]}
           //change its color to an orange
           color={"#ff9a00"}
         />
