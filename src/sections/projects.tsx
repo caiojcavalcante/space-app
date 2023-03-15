@@ -3,28 +3,62 @@ import Image from "next/image";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Projects = () => {
+  const isNonMobileScreen = useMediaQuery("(min-width:1200px)");
   return (
     <Section>
       <h1>Projects</h1>
       <Wrapper>
-        <Project>
-          <div />
+        <Project isNonMobileScreen={isNonMobileScreen}>
+          <button
+            onClick={() => {
+              window.open("https://midasltda.co");
+            }}
+          >
+            <Image
+              src="/midas-preview.jpg"
+              fill
+              alt="Midas Landing page"
+              sizes="100%"
+            />
+          </button>
           <div className="textWrap">
-            <h1>Project 1</h1>
+            <h1>Midas Landing page</h1>
             <h3>Project 1 description</h3>
           </div>
         </Project>
-        <Project>
-          <div />
+        <Project isNonMobileScreen={isNonMobileScreen}>
+          <button
+            onClick={() => {
+              window.open("https://midasltda.co");
+            }}
+          >
+            <Image
+              src="/tellus-preview.jpg"
+              fill
+              alt="Midas Landing page"
+              sizes="100%"
+            />
+          </button>
           <div className="textWrap">
-            <h1>Project 1</h1>
+            <h1>Tellus social media</h1>
             <h3>Project 1 description</h3>
           </div>
         </Project>
-        <Project>
-          <div />
+        <Project isNonMobileScreen={isNonMobileScreen}>
+          <button
+            onClick={() => {
+              window.open("https://realestate-app-silk.vercel.app/");
+            }}
+          >
+            <Image
+              src="/realestate-preview.jpg"
+              fill
+              alt="Midas Landing page"
+              sizes="100%"
+            />
+          </button>
           <div className="textWrap">
-            <h1>Project 1</h1>
+            <h1>real estate website</h1>
             <h3>Project 1 description</h3>
           </div>
         </Project>
@@ -47,7 +81,7 @@ const Section = styled.section`
   }
 `;
 const Wrapper = styled.div`
-  width: 80%;
+  width: 95%;
   max-width: 45rem;
   height: 80%;
   display: flex;
@@ -57,26 +91,32 @@ const Wrapper = styled.div`
   border: 0.3rem solid #000;
   border-radius: 2rem;
 `;
-const Project = styled.div`
+const Project = styled.div<{ isNonMobileScreen: boolean }>`
   margin: 2rem 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  gap: ${({ isNonMobileScreen }) => (isNonMobileScreen ? "2rem" : "1rem")};
   width: 100%;
   h1 {
-    font-size: 1.8rem;
+    font-size: ${({ isNonMobileScreen }) =>
+      isNonMobileScreen ? "1.1rem" : "1rem"};
   }
   h3 {
     font-family: "Poppins";
     font-size: 0.8rem;
   }
-  div {
+  button {
+    position: relative;
+    overflow: hidden;
     background-color: #000;
-    width: 16rem;
-    height: 9rem;
+    width: ${({ isNonMobileScreen }) =>
+      isNonMobileScreen ? "16rem" : "160px"};
+    height: ${({ isNonMobileScreen }) => (isNonMobileScreen ? "9rem" : "90px")};
     border-radius: 1rem;
+    border: 0.15rem solid #000;
+    cursor: pointer;
   }
   .textWrap {
     display: flex;
@@ -85,6 +125,7 @@ const Project = styled.div`
     align-items: flex-start;
     justify-content: center;
     color: #000;
+    width: 50%;
   }
 `;
 export default Projects;

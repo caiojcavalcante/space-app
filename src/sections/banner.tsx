@@ -1,106 +1,119 @@
 import styled from "styled-components";
 import Image from "next/image";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 //use typescript to pass isNonMobileScreen as a prop
 const Banner = () => {
+  const isNonMobileScreen = useMediaQuery("(min-width:1200px)");
   return (
-    <Wrapper>
+    <Wrapper isNonMobileScreen={isNonMobileScreen}>
       <div className="logo">
         <Image src="/logo.svg" alt="logo" fill style={{ objectFit: "cover" }} />
       </div>
-      <div className="banner">
-        <Image
-          priority
-          quality={100}
-          src={"/atronautacores.jpg"}
-          alt="banner"
-          fill
-          style={{ objectFit: "cover" }}
-        />
-      </div>
-      <Flex>
+      <div className="flex">
         <div className="textWrapper">
           <Image
             src={"/banner-text.png"}
             fill
             style={{ objectFit: "fill" }}
             alt="banner-text"
+            sizes={"min-width: 768px 50vw, 100vw"}
           />
         </div>
-        <SkewedOverlay />
-        <Button>
+        <Button
+          onClick={() => {
+            window.scrollTo({
+              top: 1000,
+              behavior: "smooth",
+            });
+          }}
+        >
           <h1>discover</h1>
         </Button>
-      </Flex>
+      </div>
+      <div className="banner">
+        <Image
+          priority
+          quality={100}
+          src={"/banner.jpg"}
+          alt="banner"
+          fill
+          style={{ objectFit: "cover" }}
+          sizes={"min-width: 768px 25vw, 50vw"}
+        />
+      </div>
     </Wrapper>
   );
 };
-const Wrapper = styled.section`
+const Wrapper = styled.section<{ isNonMobileScreen: boolean }>`
+  position: relative;
   overflow: hidden;
   display: flex;
-  height: 90rem;
-  max-height: 60vw;
-  flex-direction: row-reverse;
-  justify-content: end;
+  padding: ${({ isNonMobileScreen }) =>
+    isNonMobileScreen ? "0 10vw" : "10rem 0 0 0"};
+  width: 100%;
+  gap: 2vw;
+  height: 100vh;
+  min-height: calc(1865px / 2);
+  overflow: hidden;
+  flex-direction: ${({ isNonMobileScreen }) =>
+    isNonMobileScreen ? "row" : "column"};
+  justify-content: center;
   align-items: center;
-  background-color: #000;
-
+  div {
+    padding: 0;
+  }
+  .flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: ${({ isNonMobileScreen }) => (isNonMobileScreen ? "34vw" : "90%")};
+    max-width: 45rem;
+    height: 21rem;
+    max-height: 40vw;
+    gap: 1rem;
+  }
   .banner {
     position: relative;
-    min-width: 50vw;
-    width: 55rem;
-    max-width: 60vw;
-    height: 90rem;
-    max-height: 60vw;
+    width: calc(1322vw / 30);
+    height: calc(1865vw / 30);
+    max-height: calc(1865px / 2.5);
+    max-width: calc(1322px / 2.5);
+    min-height: calc(1865px / 3);
+    min-width: calc(1322px / 3);
+    ${({ isNonMobileScreen }) => (!isNonMobileScreen && "will-change: transform")};
+    ${({ isNonMobileScreen }) => (!isNonMobileScreen && "transform: translateY(7rem)")};
   }
 
   .logo {
     position: absolute;
     top: 2rem;
-    left: 50%;
+    left: calc(50vw - 2.5rem);
     z-index: 100;
-    width: 5vw;
-    height: 2.89vw;
+    width: calc(5vw / 1.5);
+    height: calc(2.89vw / 1.5);
+    min-width: 5rem;
+    min-height: 2.89rem;
   }
 
   .textWrapper {
     position: relative;
     display: flex;
-    width: 34vw;
-    max-width: 95%;
-    height: 9rem;
-    max-height: 13%;
+    width: 100%;
+    height: 100%;
   }
 `;
 
 const Button = styled.button`
-  z-index: 1;
   background-color: #fd5d00;
-  border: 0.3rem solid #000;
   border-radius: 10rem;
-  width: 34vw;
-  max-width: 95%;
-  height: 9rem;
-  max-height: 13%;
+  border: none;
+  width: 100%;
+  height: 100%;
   color: #000;
   font-family: "Akira Expanded", sans-serif;
-  font-size: 2vw;
-`;
-const Flex = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 3;
-  width: calc(50%);
-  height: 90rem;
-  max-height: 60vw;
-  background-color: #000;
-  background: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2vw;
+  font-size: 1.5rem;
 `;
 const SkewedOverlay = styled.div`
   position: absolute;

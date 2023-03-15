@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Mars from "@/components/mars";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Trajectory = () => {
+  const isNonMobileScreen = useMediaQuery("(min-width:1200px)");
   return (
     <>
-      <Section>
+      <Section isNonMobileScreen={isNonMobileScreen}>
         <h1>Abilities</h1>
         <Canvas>
           <ul>
@@ -137,12 +139,13 @@ const Trajectory = () => {
     </>
   );
 };
-const Section = styled.section`
+const Section = styled.section<{ isNonMobileScreen: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 4rem;
   justify-content: center;
+  height: 1000px;
   h1 {
     font-family: "Akira Expanded", sans-serif;
     font-size: 4rem;
@@ -153,13 +156,15 @@ const Canvas = styled.div`
   flex-direction: row;
   align-items: center;
   width: 120rem;
+  max-width: 100vw;
   height: 35rem;
-  background-image: radial-gradient(
+  max-height: 100vh;
+  /* background-image: radial-gradient(
     circle at 50% 50%,
     rgba(255, 100, 0, .1) 25%,
     #f592081d 26%,
     rgba(0, 0, 0, 1) 28%
-  );
+  ); */
   ul {
     justify-content: space-between;
     height: 60%;

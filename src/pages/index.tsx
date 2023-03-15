@@ -5,6 +5,7 @@ import Trajectory from "@/sections/trajectory";
 import Abilities from "@/sections/abilities";
 import Projects from "@/sections/projects";
 import Contact from "@/sections/contact";
+import Footer from "@/sections/footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Abilities />
       <Projects />
       <Contact />
+      <Footer />
     </>
   );
 }
